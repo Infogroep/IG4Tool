@@ -14,7 +14,6 @@ describe User do
 		@user = FactoryGirl.create(:user)
 	end
 
-	it { should have_and_belong_to_many :teams }
 	it { should have_many :logs }
 
 	it "should be valid" do
@@ -95,32 +94,6 @@ describe User do
 	it "should not authenticate bad password" do
 		new_user(:username => 'foobar', :password => 'secret').save!
 		User.authenticate('foobar', 'badpassword').should be_nil
-	end
-
-	describe "linking users and teams" do
-		before(:each) do
-			compo = FactoryGirl.create(:compo, :game => FactoryGirl.create(:game))
-			@team = FactoryGirl.create(:team, :compo => compo)
-			@team1= FactoryGirl.create(:team, :compo => compo)
-		end
-		it "adds 1 team" do
-			@user.teams << @team
-			@user.teams.count.should == 1
-		end
-		it "contains added teams" do
-			@user.teams << @team
-			@user.teams.should include(@team)
-		end
-		it "adds multiple teams" do
-			@user.teams << @team
-			@user.teams << @team1
-			@user.teams.count.should == 2
-		end
-		it "is persistent" do
-			@user.teams << @team
-			@user.reload
-			@user.teams.count.should == 1
-		end
 	end
 
 end

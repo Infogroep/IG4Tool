@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
 			when :open then 1
 			when :pending then 2
 			when :closed then 3
-			else raise WebsiteErrors::UserFriendlyError("Unknown order status")
+			else raise WebsiteErrors::UserFriendlyError.new("Unknown order status")
 		end
 	end
 
@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
 			when 1 then :open
 			when 2 then :pending
 			when 3 then :closed
-			else raise WebsiteErrors::UserFriendlyError("Unknown order status code")
+			else raise WebsiteErrors::UserFriendlyError.new("Unknown order status code")
 		end
 	end
 

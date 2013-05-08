@@ -43,11 +43,11 @@ describe UsersController do
 			it_should_deny_access_for_actions [:update]
 		end
 
-		it_should_require_user_or_access_for_actions(:user_editing, [:update,:edit]) do
+		# it_should_require_user_or_access_for_actions(:user_editing, [:update,:edit]) do
 
-			include_examples "standard_controller", User, :except => [:destroy],
-			                 :create => { :on_success => "redirects to the signup_finished page" }
+		# 	include_examples "standard_controller", User, :except => [:destroy],
+		# 	                 :create => { :on_success => "redirects to the signup_finished page" }
 
-		end
+		# end
 	end
 end

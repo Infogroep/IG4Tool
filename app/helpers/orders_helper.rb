@@ -11,6 +11,9 @@ module OrdersHelper
 		order_item.out_of_stock? ? "error" : ""
 	end
 
+	# checks is order can still be changed
+	# only people with order_processing right can change orders that are pending
+	# no one can edit closed orders
 	def can_modify_order?(order)
 		(order.status == :pending && current_user.access_allowed?(:order_processing)) ||
 		(order.status == :open && (current_user == order.user || current_user.access_allowed?(:order_processing)))

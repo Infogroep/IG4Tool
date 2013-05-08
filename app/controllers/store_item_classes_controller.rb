@@ -15,14 +15,14 @@ class StoreItemClassesController < ApplicationController
 
 	# GET /store_item_classes/1
 	# GET /store_item_classes/1.json
-	def show
-		@store_item_class = StoreItemClass.find(params[:id])
+	# def show
+	# 	@store_item_class = StoreItemClass.find(params[:id])
 
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @store_item_class }
-		end
-	end
+	# 	respond_to do |format|
+	# 		format.html # show.html.erb
+	# 		format.json { render json: @store_item_class }
+	# 	end
+	# end
 
 	# GET /store_item_classes/new
 	# GET /store_item_classes/new.json
