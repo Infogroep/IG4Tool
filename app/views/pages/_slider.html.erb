@@ -6,17 +6,6 @@
 				<div class="carousel-caption">ILAN 2013</div>
 			</div>
 		</div>
-		<% @featured_compos.each do |compo| %>
-			<div class="item">
-				<%= link_to image_tag(compo.game.image_url(:front)), compo %>
-				<div class="container">
-					<div class="carousel-caption">
-						<%= compo.description %>
-						<%= l(compo.date_time, :format => :short) %>
-					</div>
-				</div>
-			</div>
-		<% end %>
 	</div>
 	<a class="carousel-control left" href="#slider" data-slide="prev">&lsaquo;</a>
 	<a class="carousel-control right" href="#slider" data-slide="next">&rsaquo;</a>

@@ -21,21 +21,6 @@
 							<li class="<%= active_class('pages#faq') %>"><%= link_to t(:faq), controller: :pages, action: :faq %></li>
 							<li class="<%= active_class('pages#contact') %>"><%= link_to t(:contact), controller: :pages, action: :contact %></li>
 						</ul>
-					</li>
-					<li class="<%= active_class('games') %>"><%= link_to t("game.other"), games_path %></li>
-					<% if current_user %>
-						<li class="<%= active_class('compos') %>"><%= link_to t("compo.other"), compos_path %></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<%= t(:store) %>
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="<%= active_class('store_items') %>"><%= link_to t("store_item.other"), store_items_path %></li>
-								<li class="<%= active_class('orders') %>"><%= link_to t("order.other"), orders_path %></li>
-							</ul>
-						</li>
-					<% end %>
 					<li class="<%= active_class('users') %>"><%= link_to t("participant.other"), users_path %></li>
 					<% if admin_accessible %>
 						<li class="dropdown">
@@ -45,7 +30,6 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li class="<%= active_class('user_groups') %>"><%= link_to t("user_group.other"), user_groups_path if current_user.access_allowed? :user_editing %></li>
-								<li class="<%= active_class('sponsors') %>"><%= link_to t("sponsor.other"), sponsors_path if current_user.access_allowed? :sponsor_editing %></li>
 								<% if current_user.access_allowed? :store_editing %>
 								<li class="<%= active_class('store_items') %>"><%= link_to t("store_item.other"), store_items_path %></li>
 								<li class="<%= active_class('store_item_classes') %>"><%= link_to t("store_item_class.other"), store_item_classes_path %></li>

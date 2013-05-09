@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 	before_filter(:only => :admin) { true_required(admin_accessible) }
 
 	def home
-		@featured_compos = Compo.featured
 	end
 
 	def info

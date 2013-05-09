@@ -17,8 +17,6 @@ Lanparty::Application.routes.draw do
 			put "pay", :on => :member
 		end
 
-		resources :clans
-
 		resources :store_item_classes
 
 		resources :pricing_defaults
@@ -30,8 +28,6 @@ Lanparty::Application.routes.draw do
 		resources :user_groups
 
 		resources :logs
-
-		resources :sponsors
 
 		match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -54,34 +50,11 @@ Lanparty::Application.routes.draw do
 			match 'order_check' => 'order_check#order_check', :as => :order_check
 		end
 
-		resources :teams do
-			put :join, :on => :member
-			put :leave, :on => :member
-		end
-
 		resources :sessions
 
 		resources :users do
 			post :markpayed, :on => :collection
 			get :soundtest, :on => :collection
-		end
-
-		resources :match_lose_links
-
-		resources :match_win_links
-
-		resources :match_scores
-
-		resources :rounds
-
-		resources :matches
-
-		resources :prices
-
-		resources :games
-
-		resources :compos do
-			put :save_bracket, :on => :member
 		end
 
 		resources :barcodes
