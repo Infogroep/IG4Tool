@@ -1,4 +1,6 @@
 *.rbc
+.ruby-version
+.ruby-gemset
 *.sassc
 .sass-cache
 capybara-*.html
