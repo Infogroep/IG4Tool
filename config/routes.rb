@@ -1,6 +1,8 @@
 Lanparty::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
+  root :to => 'pages#home'
+
 	scope "(:locale)", :locale => /en|nl/ do
 
 		resources :blog_posts do
@@ -29,25 +31,25 @@ Lanparty::Application.routes.draw do
 
 		resources :logs
 
-		match 'user/edit' => 'users#edit', :as => :edit_current_user
+		get 'user/edit' => 'users#edit', :as => :edit_current_user
 
-		match 'signup' => 'users#new', :as => :signup
+		get 'signup' => 'users#new', :as => :signup
 
-		match 'logout' => 'sessions#destroy', :as => :logout
+		get 'logout' => 'sessions#destroy', :as => :logout
 
-		match 'login' => 'sessions#new', :as => :login
+		get 'login' => 'sessions#new', :as => :login
 
-		match 'info' => 'pages#info'
-		match 'location' => 'pages#location'
-		match 'faq' => 'pages#faq'
-		match 'contact' => 'pages#contact', :as => :contact
-		match 'signup_finished' => 'pages#signup_finished', :as => :signup_finished
-		match 'darules' => 'pages#rules', :as => :rules
-		match 'admin' => 'pages#admin', :as => :admin
+		get 'info' => 'pages#info'
+		get 'location' => 'pages#location'
+		get 'faq' => 'pages#faq'
+		get 'contact' => 'pages#contact', :as => :contact
+		get 'signup_finished' => 'pages#signup_finished', :as => :signup_finished
+		get 'darules' => 'pages#rules', :as => :rules
+		get 'admin' => 'pages#admin', :as => :admin
 
 		namespace 'util' do
-			match 'soundtest' => 'soundtest#soundtest', :as => :soundtest
-			match 'order_check' => 'order_check#order_check', :as => :order_check
+			get 'soundtest' => 'soundtest#soundtest', :as => :soundtest
+			get 'order_check' => 'order_check#order_check', :as => :order_check
 		end
 
 		resources :sessions
@@ -62,61 +64,52 @@ Lanparty::Application.routes.draw do
 		resources :store_items
 	end
 
-	match '/:locale' => 'pages#home', :as => :home
-	# The priority is based upon order of creation:
-	# first created -> highest priority.
+	get '/:locale' => 'pages#home', :as => :home
+	# The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
 
-	# Sample of regular route:
-	#	 match 'products/:id' => 'catalog#view'
-	# Keep in mind you can assign values other than :controller and :action
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
 
-	# Sample of named route:
-	#	 match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-	# This route can be invoked with purchase_url(:id => product.id)
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
 
-	# Sample resource route (maps HTTP verbs to controller actions automatically):
-	#	 resources :products
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-	# Sample resource route with options:
-	#	 resources :products do
-	#		 member do
-	#			 get 'short'
-	#			 post 'toggle'
-	#		 end
-	#
-	#		 collection do
-	#			 get 'sold'
-	#		 end
-	#	 end
+  # Example resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
 
-	# Sample resource route with sub-resources:
-	#	 resources :products do
-	#		 resources :comments, :sales
-	#		 resource :seller
-	#	 end
+  # Example resource route with options:
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
-	# Sample resource route with more complex sub-resources
-	#	 resources :products do
-	#		 resources :comments
-	#		 resources :sales do
-	#			 get 'recent', :on => :collection
-	#		 end
-	#	 end
+  # Example resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
 
-	# Sample resource route within a namespace:
-	#	 namespace :admin do
-	#		 # Directs /admin/products/* to Admin::ProductsController
-	#		 # (app/controllers/admin/products_controller.rb)
-	#		 resources :products
-	#	 end
+  # Example resource route with more complex sub-resources:
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', on: :collection
+  #     end
+  #   end
 
-	# You can have the root of your site routed with "root"
-	# just remember to delete public/index.html.
-	root :to => 'pages#home'
-
-	# See how all your routes lay out with "rake routes"
-
-	# This is a legacy wild controller route that's not recommended for RESTful applications.
-	# Note: This route will make all actions in every controller accessible via GET requests.
-	# match ':controller(/:action(/:id))(.:format)'
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
 end

@@ -51,7 +51,7 @@ describe User do
 	end
 
 	it "should require matching password confirmation" do
-		new_user(:password_confirmation => 'nonmatching').should have(1).error_on(:password)
+		new_user(:password_confirmation => 'nonmatching').should have(1).error_on(:password_confirmation)
 	end
 
 	it "should generate password hash and salt on create" do

@@ -9,7 +9,7 @@ class PricingDefault < ActiveRecord::Base
 	validates_presence_of :name
 	validates_uniqueness_of :name
 
-	has_and_belongs_to_many :user_groups
+	has_and_belongs_to_many :user_groups, join_table: "pricing_defaults_user_groups"
 	has_many :pricing_overrides
 
 	def self.find_best_pricing_default(user)

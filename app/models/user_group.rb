@@ -13,9 +13,9 @@ class UserGroup < ActiveRecord::Base
 	validates_uniqueness_of :name
 	validates_presence_of :name
 
-	has_and_belongs_to_many :users
+	has_and_belongs_to_many :users, join_table: "user_groups_users"
 	# TODO: I really want this dependent
-	has_and_belongs_to_many :pricing_defaults#, :dependent => :destroy
+	has_and_belongs_to_many :pricing_defaults, join_table: "pricing_defaults_user_groups"#, :dependent => :destroy
 
 	mount_uploader :badge, BadgeUploader
 

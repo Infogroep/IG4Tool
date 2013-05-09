@@ -11,13 +11,14 @@ class User < ActiveRecord::Base
 
 	validates_presence_of :username, :email
 	validates_uniqueness_of :username, :email, :allow_blank => true
-	validates_format_of :username, :with => /^[-\w\._@]+$/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
-	validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
+	# TODO Rails 4 complains about the regex
+	validates_format_of :username, :with => /\A[-\w\._@]+\z/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
+	validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
 	validates_presence_of :password, :on => :create
 	validates_confirmation_of :password
 	validates_length_of :password, :minimum => 4, :allow_blank => true
 
-	has_and_belongs_to_many :user_groups
+	has_and_belongs_to_many :user_groups, :join_table => "user_groups_users"
 	has_many :logs
 
 	# login can be either username or email address
@@ -32,9 +33,9 @@ class User < ActiveRecord::Base
 
 	def access_allowed?(access_type)
 		allowed = false
-		user_groups.find_each do |group|
+		user_groups.find_each { |group|
 			allowed ||= group.allows_access?(access_type)
-		end
+		}
 		allowed
 	end
 
@@ -65,10 +66,10 @@ class User < ActiveRecord::Base
 
 	def all_badges
 		badges = []
-		user_groups.each do |user_group|
+		user_groups.each { |user_group|
 			badge_url = user_group.badge_url(:badge)
 			badges.push({ :image_url => badge_url, :title => user_group.description }) if badge_url
-		end
+		}
 		badges
 	end
 
