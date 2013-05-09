@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 	# new columns need to be added here to be writable through mass assignment
-	attr_accessible :username, :email, :password, :password_confirmation, :password_hash, :password_salt, :clan_tag, :payed, :user_group_ids, :account_balance, :pending_order_sound
+	attr_accessible :username, :email, :password, :password_confirmation, :password_hash, :password_salt, :payed, :user_group_ids, :account_balance, :pending_order_sound
 	attr_accessor :password
 	before_save :prepare_password
 	before_save :init_balance
@@ -18,8 +18,6 @@ class User < ActiveRecord::Base
 	validates_length_of :password, :minimum => 4, :allow_blank => true
 
 	has_and_belongs_to_many :user_groups
-	has_and_belongs_to_many :teams
-	belongs_to :clan
 	has_many :logs
 
 	# login can be either username or email address
@@ -38,14 +36,6 @@ class User < ActiveRecord::Base
 			allowed ||= group.allows_access?(access_type)
 		end
 		allowed
-	end
-
-	def clan_tag
-		clan.try(:tag)
-	end
-
-	def clan_tag=(tag)
-		self.clan = Clan.find_or_create_by_tag(tag) if tag.present?
 	end
 
 	def self.smsg_generate_checksum val
@@ -75,20 +65,10 @@ class User < ActiveRecord::Base
 
 	def all_badges
 		badges = []
-
 		user_groups.each do |user_group|
 			badge_url = user_group.badge_url(:badge)
 			badges.push({ :image_url => badge_url, :title => user_group.description }) if badge_url
 		end
-
-		teams.each do |team|
-			compo = team.compo
-			has_won = compo.has_won?(team)
-			badge_url = has_won && compo.winning_badge_url(:badge) || compo.participation_badge_url(:badge)
-			badge_title = has_won && "#{compo.game.name} compo winner" || "#{compo.game.name} compo participant"
-			badges.push({ :image_url => badge_url, :title => badge_title }) if badge_url
-		end
-
 		badges
 	end
 

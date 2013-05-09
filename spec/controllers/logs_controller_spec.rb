@@ -27,9 +27,6 @@ describe LogsController do
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in
 	# LogsController. Be sure to keep this updated too.
-	before(:each) do
-		@game = FactoryGirl.create(:game)
-	end
 
 	def valid_attributes
 		{ :message => "MyString", :user_id => FactoryGirl.create(:user).id }
