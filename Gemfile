@@ -16,9 +16,10 @@ gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass' #added bootstrap sass file directly in vendor/assets directory
 gem 'sass-rails',   '~> 4.0.0.rc1'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'bourbon'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', '~> 0.11.3', :platform => :ruby

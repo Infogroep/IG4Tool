@@ -15,59 +15,69 @@
  *= require dataTables/jquery.dataTables.bootstrap
  *= require chosen
  */
-@import "bootstrap_and_overrides";
-@import 'font-awesome';
+
+$navbarButtonWidth: 100px;
+$bodyBackgroundColor: #faf5e9;
+$bodyTextColor: #555;
+
+@import "bourbon";
+@import "twitter/bootstrap";
+@import "twitter/bootstrap/responsive";
+@import "font-awesome";
 @import "pages";
-
-input[type=submit] {
-	border-radius: 5px;
-}
-
-.center {
-	text-align: center;
-}
-
-.alert {
-	// TODO: This line breaks twitter bootstrap on small devices. My solution is not ideal.
-	// position: absolute;
-	z-index: 1029;
-}
-
-.flashmsgholder {
-	// Said solution
-	position: absolute;
-	padding-right: 20px;
-}
-
-@media (max-width: 979px) {
-	.alert {
-		margin-top: 51px;
-	}
-}
-
-.order-lock-indicator {
-	margin-right: 4px;
-}
-
-input.order-amount {
-	width: 50px;
-	margin-bottom: 0px;
-}
-
-th.order-price {
-	width: 100px;
-}
-
-.action-toolbar {
-	margin: 0px;
-}
-
-.blog-post-buttons {
-	float: right;
-	margin-left: 5px;
-}
 
 // Counteract an artefact in Chosen caused by the bootstrap theme
 .chzn-results {
 	color: rgb(82, 87, 92);
+}
+
+.nav-container{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.main-content-fluid {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+body {
+	background: $bodyBackgroundColor;
+	color: $bodyTextColor;
+}
+
+.site-content {
+	background: #FEFFFE;
+	height: 100%;
+	width: 100%;
+	border: 1px solid #D8D8D8;
+	padding: 10px 10px 10px 10px; /*Make space at the top for the legend*/
+	border-radius: 15px;
+}
+
+.margin-top-5 {
+	margin-top: 5px;
+}
+
+.margin-bottom-5 {
+	margin-bottom: 5px;
+}
+
+.margin-left-5 {
+	margin-left: 5px;
+}
+
+#footer {
+	height: 60px;
+	text-align: center;
+	background: $navbarBackground;
+	height: 60px;
+	border-top: 3px solid $navbarBorder;
+}
+
+@media (max-width: 767px) {
+.main-content-fluid {
+	padding-left: 5px;
+	padding-right: 5px;
+}
 }

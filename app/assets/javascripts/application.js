@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require bootstrap
+//= require twitter/bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require chosen-jquery
@@ -63,6 +63,23 @@ function load_i18n_js(locale) {
 		}
 	}
 
+	function setEqualHeight(columns)
+	{
+		var tallestcolumn = 0;
+		columns.each(
+			function()
+			{
+				currentHeight = $(this).height();
+				if(currentHeight > tallestcolumn)
+				{
+					tallestcolumn  = currentHeight;
+				}
+			}
+			);
+		columns.height(tallestcolumn);
+	}
+
+	setEqualHeight($("#main-content-container  > div"));
 	$('.datatable').dataTable(datatable_settings);
 	$('.datatable').trigger('after-datatable');
 }

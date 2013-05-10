@@ -1,21 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= content_for?(:title) ? yield(:title) : "ILAN" %></title>
+	<title><%= content_for?(:title) ? yield(:title) : "IG4Tool" %></title>
 	<%= stylesheet_link_tag "application" %>
 	<%= javascript_include_tag :application %>
 	<%= javascript_tag "$(function(){load_i18n_js('#{I18n.locale}');})" %>
 	<%= csrf_meta_tag %>
 	<%= yield(:head) %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="flash-messages">
-	<%= render :partial => 'layouts/flash_messages' %>
+
+	<div class="container-fluid nav-container">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="navbar">
+					<div class="navbar-inner">
+						<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li ><a href="#">Home</a></li>
+								<li class="active"><a href="#">Link</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										Exercices
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Link</a></li>
+										<li><a href="#">Link</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li class="special"><a href="#">Link</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+  		<!-- <div class="navbar">
+  			<div class="navbar-inner">
+  				<ul id="nav menubar">
+  					<li class="menu_item" id="menu_item_selected" onclick="location.href='sales.html';">
+  						Sales
+  					</li>
+  					<li class="menu_item" onclick="location.href='accounts.html';">
+  						Accounts
+  					</li>
+  					<li class="menu_item" onclick="location.href='stock.html';">
+  						Stock
+  					</li>
+  					<li class="menu_item" onclick="location.href='user_overview.html';">
+  						Overview
+  					</li>
+  					<li class="menu_item" id="logout" onclick="logout();check();">
+  						Logout <br>
+  						Rik
+  					</li>
+  				</ul>
+  			</div>
+  		</div> -->
+  	</div>
+  </div>
+  <div class="container-fluid main-content-fluid">
+  	<div class="row-fluid" id="main-content-container">
+  		<%= yield %>
+  		<!-- <div class="span12 site-content margin-top-5">
+  			hello
+  		</div> -->
+  	</div>
+  </div>
+  <div class="container-fluid nav-container" id="footer">
+  </div>
 </div>
-<%= render :partial => 'layouts/header' %>
-<%= yield(:before_container) %>
-<div class="container">
-	<%= render :partial => 'layouts/content' %>
-</div>
+
 </body>
 </html>
