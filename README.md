@@ -10,3 +10,12 @@ setup
 	3. migrate the database (rake db:migrate)
 	4. run the unit tests (rake rspec)
 	5. you're set!
+
+Pice Default and Price Override
+-------------------------------
+TODO
+
+
+Testing
+-------
+TODO for ruben

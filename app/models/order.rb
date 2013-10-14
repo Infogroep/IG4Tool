@@ -12,6 +12,8 @@ class Order < ActiveRecord::Base
 	validates_presence_of :cashier, :if => Proc.new { |order| order.status == :closed }
 	validates_presence_of :payed_at, :if => Proc.new { |order| order.status == :closed }
 
+	validates :status_code, :inclusion => { :in => [1,2,3] }
+
 	def self.status_to_int(status)
 		case status
 			when :open then 1
