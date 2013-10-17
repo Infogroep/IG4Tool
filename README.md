@@ -1,7 +1,8 @@
-lanparty
+IG4Tool
 ========
 
-LanPartyWebsite
+IG4Tool
+Tool to automate and simplify infogroeps administrative tasks
 
 setup
 ------
