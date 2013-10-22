@@ -18,6 +18,7 @@ gem 'sqlite3'
 # in production environments by default.
 # gem 'bootstrap-sass' #added bootstrap sass file directly in vendor/assets directory
 gem 'sass-rails',   '~> 4.0.0.rc1'
+gem 'compass-rails', github: 'Compass/compass-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'bourbon'
 
